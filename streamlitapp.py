@@ -125,5 +125,3 @@ logaritmic = st.sidebar.checkbox("Log scale", value=True, key='check_5')
 
 plotly_fig = get_plotly_object(selected_countries, date_from, date_to,show_confirmed,show_deaths,show_recovered,show_legend,logaritmic)
 st.write(plotly_fig)
-
-button = st.sidebar.button("Refresh data", key='btn_1')
