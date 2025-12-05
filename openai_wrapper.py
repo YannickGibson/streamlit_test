@@ -15,7 +15,7 @@ if "messages" not in st.session_state:
 # Display chat history
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+        st.markdown(message["content"], unsafe_allow_html=True)
 
 # Chat input
 if prompt := st.chat_input("What would you like to ask?"):
@@ -24,7 +24,7 @@ if prompt := st.chat_input("What would you like to ask?"):
     
     # Display user message
     with st.chat_message("user"):
-        st.markdown(prompt)
+        st.markdown(prompt, unsafe_allow_html=True)
     
     # Get ChatGPT response
     with st.chat_message("assistant"):
@@ -46,9 +46,9 @@ if prompt := st.chat_input("What would you like to ask?"):
             for chunk in stream:
                 if chunk.choices[0].delta.content is not None:
                     full_response += chunk.choices[0].delta.content
-                    message_placeholder.markdown(full_response + "▌")
+                    message_placeholder.markdown(full_response + "▌", unsafe_allow_html=True)
             
-            message_placeholder.markdown(full_response)
+            message_placeholder.markdown(full_response, unsafe_allow_html=True)
             
         except Exception as e:
             full_response = f"Error: {str(e)}"
